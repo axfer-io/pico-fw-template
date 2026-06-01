@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.13)
 include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
 
 # Nombre lógico del firmware (portable)
-set(FW_NAME "app" CACHE STRING "Firmware name")
+get_filename_component(FW_NAME ${CMAKE_SOURCE_DIR} NAME CACHE STRING "Firmware name")
 
 project(${FW_NAME} C CXX ASM)
 set(CMAKE_C_STANDARD 11)

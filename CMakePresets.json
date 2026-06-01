@@ -7,7 +7,6 @@
       "hidden": true,
       "generator": "Ninja",
       "cacheVariables": {
-        "FW_NAME": "app",
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
       }
     },
@@ -49,8 +48,6 @@
       "hidden": true,
       "cacheVariables": { "PICO_BOARD": "pico2_w" }
     },
-
-    /* ---- presets finales (los que sí usas) ---- */
     {
       "name": "pico-release",
       "displayName": "Pico Release",
