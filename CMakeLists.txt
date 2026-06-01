@@ -17,7 +17,11 @@ add_subdirectory(lib/drivers)
 add_subdirectory(lib/utils)
 add_subdirectory(src)
 
-target_link_libraries(${FW_NAME} PRIVATE app_src)
+target_link_libraries(${FW_NAME} PRIVATE
+    pico_stdlib
+    drivers
+    utils
+)
 
 pico_enable_stdio_usb(${FW_NAME} 1)
 pico_enable_stdio_uart(${FW_NAME} 0)
