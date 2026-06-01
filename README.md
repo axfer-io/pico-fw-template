@@ -35,11 +35,12 @@ It is designed for:
 
 ## Features
 
-- Out-of-tree builds
-- CMake presets (Debug / Release)
+- Out-of-tree builds per preset
+- CMake presets (Debug / Release × all boards)
 - OpenOCD flash target
 - SWD debugging ready
-- Modular source / lib structure
+- Firmware name derived from project directory automatically
+- Modular structure: `src/` as OBJECT library, `lib/` for drivers and utilities
 
 ---
 
@@ -47,12 +48,36 @@ It is designed for:
 
 ```text
 .
-├── src/            # Application code
-├── lib/            # Drivers / utilities
-├── build/          # Generated build directories
+├── src/            # Application code (compiled as app_src OBJECT library)
+├── lib/
+│   ├── drivers/    # Hardware drivers
+│   └── utils/      # Utility functions
+├── build/          # Generated build directories (git-ignored)
 ├── CMakeLists.txt
 ├── CMakePresets.json
 └── README.md
+```
+
+### Adding source files
+
+Add `.c` files to `src/CMakeLists.txt` only — the root never needs to change:
+
+```cmake
+add_library(app_src OBJECT
+    main.c
+    uart.c
+)
+```
+
+---
+
+## Using this template
+
+Copy or clone the repo and rename the folder to your project name — the binary will be named after the folder automatically.
+
+```bash
+cp -r pico-fw-template my-project
+cd my-project
 ```
 
 ---
