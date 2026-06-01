@@ -40,7 +40,7 @@ It is designed for:
 - OpenOCD flash target
 - SWD debugging ready
 - Firmware name derived from project directory automatically
-- Modular structure: `src/` as OBJECT library, `lib/` for drivers and utilities
+- Modular structure: `src/` for application code, `lib/` for drivers and utilities
 
 ---
 
@@ -48,7 +48,7 @@ It is designed for:
 
 ```text
 .
-├── src/            # Application code (compiled as app_src OBJECT library)
+├── src/            # Application code
 ├── lib/
 │   ├── drivers/    # Hardware drivers
 │   └── utils/      # Utility functions
@@ -60,12 +60,25 @@ It is designed for:
 
 ### Adding source files
 
-Add `.c` files to `src/CMakeLists.txt` only — the root never needs to change:
+Add `.c` files to `src/CMakeLists.txt`:
 
 ```cmake
-add_library(app_src OBJECT
+target_sources(${FW_NAME} PRIVATE
     main.c
     uart.c
+)
+```
+
+### Adding SDK or custom libraries
+
+Add them to `target_link_libraries` in the root `CMakeLists.txt`:
+
+```cmake
+target_link_libraries(${FW_NAME} PRIVATE
+    pico_stdlib
+    drivers
+    utils
+    hardware_i2c    # SDK library example
 )
 ```
 
