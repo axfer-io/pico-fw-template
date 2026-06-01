@@ -25,7 +25,8 @@ cmake --preset pico2w-debug
 
 Esto:
 - Crea el directorio de build asociado al preset.
-- Fija `PICO_BOARD`, `FW_NAME` y `CMAKE_BUILD_TYPE`.
+- Fija `PICO_BOARD` y `CMAKE_BUILD_TYPE`.
+- Deriva `FW_NAME` del nombre del directorio del proyecto automáticamente.
 - Genera los archivos de Ninja.
 
 Solo se hace:
@@ -89,8 +90,8 @@ cmake --build build/pico2w-debug --target flash
 Solo cuando cambias configuración:
 
 - `PICO_BOARD`
-- `FW_NAME`
 - `CMAKE_BUILD_TYPE`
+- nombre del directorio del proyecto (cambia `FW_NAME`)
 - estructura de CMake
 - build corrupto
 
