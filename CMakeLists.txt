@@ -13,15 +13,11 @@ pico_sdk_init()
 
 add_executable(${FW_NAME})
 
-add_subdirectory(src)
 add_subdirectory(lib/drivers)
 add_subdirectory(lib/utils)
+add_subdirectory(src)
 
-target_link_libraries(${FW_NAME}
-    pico_stdlib
-    drivers
-    utils
-)
+target_link_libraries(${FW_NAME} PRIVATE app_src)
 
 pico_enable_stdio_usb(${FW_NAME} 1)
 pico_enable_stdio_uart(${FW_NAME} 0)
